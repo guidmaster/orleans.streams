@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Build">
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <!-- Use the latest version of the C# language. -->
+    <LangVersion>latest</LangVersion>
+    <!-- Used to store connection strings and other sensitive settings, so you don't have to check them into your source
+         control provider. Only use this in Development, it is not intended for Production use.
+         See http://docs.asp.net/en/latest/security/app-secrets.html -->
+    <UserSecretsId>streamtest.Server-D1BDD3A4-DFF1-4366-A5A2-181A1CCC9FF3</UserSecretsId>
+    <!-- Enable tiered JIT compilation for better performance.
+         See http://mattwarren.org/2017/12/15/How-does-.NET-JIT-a-method-and-Tiered-Compilation/ -->
+    <TieredCompilation>true</TieredCompilation>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <Version>1.0.0</Version>
+    <Authors>Project Author</Authors>
+    <Company>Project Author</Company>
+    <Product>Project Title</Product>
+    <Description>Project Description</Description>
+    <Copyright>Copyright © Project Author. All rights Reserved</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup Label="Package References">
+    <PackageReference Include="Microsoft.Orleans.Streaming.AzureStorage" Version="2.3.5" />
+    <PackageReference Include="OrleansDashboard" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="2.3.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Orleans.OrleansTelemetryConsumers.Counters" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.Reminders.AzureStorage" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.Transactions" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.Transactions.AzureStorage" Version="2.3.5" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.3" />
+    <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+    <PackageReference Include="Serilog.Exceptions" Version="5.3.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="2.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Label="Project References">
+    <ProjectReference Include="..\streamtest.Abstractions\streamtest.Abstractions.csproj" />
+    <ProjectReference Include="..\streamtest.Grains\streamtest.Grains.csproj" />
+  </ItemGroup>
+
+</Project>
