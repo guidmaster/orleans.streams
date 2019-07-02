@@ -24,8 +24,8 @@ namespace streamtest.Client
 
                 var clock = clusterClient.GetGrain<IClock>(Guid.Empty);
                 await clock.RegisterTask();
-                var clockWriter = clusterClient.GetGrain<IClockWriter>(Guid.Empty);
-                await clockWriter.RegisterClockAsync(clock);
+                //var clockWriter = clusterClient.GetGrain<IClockWriter>(Guid.Empty);
+                //await clockWriter.RegisterClockAsync(clock);
 
                 //var streamProvider = clusterClient.GetStreamProvider(StreamProviderName.Default);
                 var streamProvider = clusterClient.GetStreamProvider("myname");

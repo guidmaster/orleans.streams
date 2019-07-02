@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace streamtest.Grains
 {
+    
     public class ClockGrain : Grain, IClock
     {
         private string _currentTime;
