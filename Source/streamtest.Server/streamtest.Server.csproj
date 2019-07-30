@@ -24,6 +24,8 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package References">
+    <PackageReference Include="Microsoft.Orleans.OrleansGoogleUtils" Version="2.3.5" />
+    <PackageReference Include="Microsoft.Orleans.ProtobufNet" Version="2.3.5" />
     <PackageReference Include="Microsoft.Orleans.Streaming.AzureStorage" Version="2.3.5" />
     <PackageReference Include="OrleansDashboard" Version="2.3.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.2.0" />

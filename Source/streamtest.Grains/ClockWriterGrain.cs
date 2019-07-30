@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace streamtest.Grains
 {
-    public class ClockWriterGrain : Grain, IClockWriter
+    public class ClockWriterGrain : Grain<ClockWriterState>, IClockWriter
     {
         private string _time;
         private IClock _clock;
@@ -26,10 +26,36 @@ namespace streamtest.Grains
 
         public override async Task OnActivateAsync()
         {
+            try
+            {
+                if (State.FirstTime)
+                {
+                    State = new ClockWriterState();
+                    State.FirstTime = false;
+                }
+                await WriteStateAsync();
+            }
+            catch (Exception ex)
+            {
 
+                throw;
+            }
+            
             //streamProvider = GetStreamProvider(StreamProviderName.Default);
             streamProvider = GetStreamProvider("myname");
             stream = streamProvider.GetStream<string>(Guid.Empty, "TIME");
+
+
+
+
+
+            stream = streamProvider.GetStream<WorkspaceCreated>(tenId, "Workspace");
+            stream = streamProvider.GetStream<GroupCreated>(tenId, "Workspace");
+
+
+
+
+
             _logger.LogDebug("Getting stream {StreamName}", stream.Namespace);
             subscriptionHandles = await stream.GetAllSubscriptionHandles();
             if (subscriptionHandles.Count > 0)
@@ -58,10 +84,12 @@ namespace streamtest.Grains
 
         public Task OnNextAsync(string payload)
         {
+            State.Date = DateTime.Parse(payload);
+            State.Msg = payload;
             _logger.LogDebug("Inside time is {Time}", payload);
             _time = payload;
             Console.WriteLine("From Inside: " + _time);
-            return Task.CompletedTask;
+            return WriteStateAsync();
         }
 
 

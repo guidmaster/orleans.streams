@@ -83,6 +83,8 @@ namespace streamtest.Server
                     {
                         options.ConnectionString = storageOptions.ConnectionString;
                         options.UseJson = true;
+                        options.UseFullAssemblyNames = false;
+                        options.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.None;
                     })
                 .UseAzureTableReminderService(options => options.ConnectionString = storageOptions.ConnectionString)
                 .UseTransactions(withStatisticsReporter: true)

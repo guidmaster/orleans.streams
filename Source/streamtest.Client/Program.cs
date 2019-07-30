@@ -22,10 +22,14 @@ namespace streamtest.Client
                 await clusterClient.Connect();
                 RequestContext.Set("TraceId", Guid.NewGuid());
 
+
+                //var hello = clusterClient.GetGrain<IHelloGrain>(Guid.NewGuid());
+                //await hello.SayHello("Mojok");
+
                 var clock = clusterClient.GetGrain<IClock>(Guid.Empty);
                 await clock.RegisterTask();
-                //var clockWriter = clusterClient.GetGrain<IClockWriter>(Guid.Empty);
-                //await clockWriter.RegisterClockAsync(clock);
+                var clockWriter = clusterClient.GetGrain<IClockWriter>(Guid.Empty);
+                await clockWriter.RegisterClockAsync(clock);
 
                 //var streamProvider = clusterClient.GetStreamProvider(StreamProviderName.Default);
                 var streamProvider = clusterClient.GetStreamProvider("myname");

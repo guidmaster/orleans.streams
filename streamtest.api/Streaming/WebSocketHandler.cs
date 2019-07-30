@@ -54,6 +54,7 @@ namespace streamtest.api.Streaming
         public virtual async Task OnDisconnectedAsync(WebSocket socket)
         {
             await WebSocketConnectionManager.RemoveSocket(WebSocketConnectionManager.GetId(socket));
+            //await subscription.UnsubscribeAsync();
         }
 
         public async Task SendMessageAsync(WebSocket socket, string message)
